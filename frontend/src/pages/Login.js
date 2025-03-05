@@ -50,7 +50,7 @@ const Login = () => {
           <Card className='p-4 shadow-lg border-0 rounded'>
             <h2 className='text-center mb-4'>Admin Login</h2>
             <Formik
-              initialValues={handleSubmit}
+              initialValues={{email: "", password: ""}}
               validationSchema={validationSchema}
               onSubmit={(values, { setSubmitting, resetForm }) => {
                 console.log('Login Data:', values)
