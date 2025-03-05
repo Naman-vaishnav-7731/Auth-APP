@@ -5,10 +5,13 @@ import * as Yup from 'yup'
 import { useNavigate } from 'react-router-dom'
 import API from '../utils/api';
 import { toast } from "react-toastify";
+import { useDispatch } from 'react-redux'
+import { login } from '../redux/authSlice'
 
 const Login = () => {
   
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is required'),
@@ -23,6 +26,11 @@ const Login = () => {
       if(response?.data?.code === 200 && response.data){
         toast.success(response?.data?.message);
         resetForm();
+        const userData = {
+          token: response?.data?.token,
+          user: response?.data?.user,
+        };
+        dispatch(login(userData))
         navigate('/dashboard');
       }else{
         toast.error(response?.data?.message);
