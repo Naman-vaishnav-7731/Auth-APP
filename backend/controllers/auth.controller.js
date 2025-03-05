@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt'; // Using This module for Password Hashing
 import { validationResult } from "express-validator"; // Using for Server Side Validations
 import { db } from '../models/index.js';
 const User = db.users;
+import { generateToken } from '../utils/jwtUtils.js';
 
 export const userRegister = async (req, res) => {
     try {
@@ -74,9 +75,12 @@ export const userLogin = async (req, res) => {
       return res.json({ message: "Invalid email or password", code: 401 });
     }
 
+    let token = generateToken({ email: user.email }, "2h");
+
     res.json({
       message: "Login successful",
       code: 200,
+      token,
       user: {
         id: user.id,
         email: user.email,
