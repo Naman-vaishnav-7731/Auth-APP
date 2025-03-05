@@ -30,6 +30,10 @@ sequelize.authenticate().then(() => {
     console.log("Database Error", err);
 });
 
+// sequelize.sync({ force : false }).then(() => {
+//     console.log("Yes re-sync is done !!")
+// })
+
 // All Routes
 app.use('/api', router);
 

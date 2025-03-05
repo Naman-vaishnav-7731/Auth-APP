@@ -38,7 +38,7 @@ const CustomerSignUp = () => {
       }
       const response = await API.post(`/auth-signup`, data)
       if(response?.data?.code === 200 && response.data){
-        toast.success(response?.data?.message);
+         toast.success(`${response?.data?.message} & Verification Email Has been sent Please verify it`);
         resetForm();
       }else{
         toast.error(response?.data?.message);

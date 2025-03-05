@@ -22,8 +22,4 @@ db.Sequelize = Sequelize;
 // User model
 db.users = User(sequelize, DataTypes);
 
-sequelize.sync({ force : false }).then(() => {
-    console.log("Yes re-sync is done !!")
-})
-
 

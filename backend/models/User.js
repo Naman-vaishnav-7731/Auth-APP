@@ -35,6 +35,10 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      verificationToken: {
+        type: DataTypes.STRING, // Add this field
+        allowNull: true,
+      },
     });
   
     return User;

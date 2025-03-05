@@ -4,7 +4,7 @@ configDotenv();
 
 const SECRET_KEY = process.env.JWT_KEY;
 
-export const generateToken = (payload, expiresIn = "24h") => {
+export const generateJwtToken = (payload, expiresIn = "24h") => {
     return jwt.sign(payload, SECRET_KEY, { expiresIn });
 };
 
